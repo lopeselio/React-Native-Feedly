@@ -11,12 +11,16 @@ const VideosScreen = ({navigation}) => {
             contentContainerStyle={StyleSheet.contentContainerStyle}
             containerStyle={styles.containerStyle}
             titleStyle={{fontSize: 15}}
+            onPress={()=> navigation.navigate('Video_screen', {
+                id: 'abcdefgh',
+                postData: {}
+            })}
         />
     )
 
     return(
         <ScrollView>
-            <View>
+            <View style={{padding: 20}}>
                 {renderVideos()}
             </View>
         </ScrollView>
