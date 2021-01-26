@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+// import { render } from 'react-dom';
 import { View, Text, Button, ScrollView, ActivityIndicator,StyleSheet } from 'react-native';
 import { Tile } from 'react-native-elements';
 
