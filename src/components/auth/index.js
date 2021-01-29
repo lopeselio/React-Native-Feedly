@@ -3,7 +3,7 @@ import { View, StyleSheet, ScrollView } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser, clearAuthError } from '../../store/actions';
+import { registerUser, loginUser,clearAuthError } from '../../store/actions';
 import { useFocusEffect } from '@react-navigation/native'
 
 import { Input, Button } from 'react-native-elements';
@@ -23,6 +23,7 @@ const AuthScreen = () => {
             dispatch(registerUser(values));
         } else {
             // sign in
+            dispatch(loginUser(values))
         }
     }
 
@@ -45,7 +46,7 @@ const AuthScreen = () => {
             <View style={styles.container}>
                 <LogoText/>
                 <Formik
-                    initialValues={{ email:'abc123@gmail.com',password:'123456'}}
+                    initialValues={{ email:'',password:''}}
                     validationSchema={Yup.object({
                         email: Yup.string()
                         .email('Invalid email address')
@@ -142,4 +143,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AuthScreen;
+export default AuthScreen
