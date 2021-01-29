@@ -3,43 +3,49 @@ import { View, StyleSheet, ScrollView } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser } from '../../store/actions'
+import { registerUser, clearAuthError } from '../../store/actions';
+import { useFocusEffect } from '@react-navigation/native'
 
 import { Input, Button } from 'react-native-elements';
 import {LogoText, Colors, showToast } from '../../utils/tools';
 
 const AuthScreen = () => {
-    const dispatch = useDispatch()
-    const error = useSelector(state => state.auth.error)
+    const dispatch = useDispatch();
+    const error = useSelector(state => state.auth.error )
     const [formType, setFormType] = useState(true)
     const [ securEntry,setSecurEntry] = useState(true);
     const [loading, setLoading] = useState(false)
 
     const handleSubmit = (values) => {
-        // alert(values)
         setLoading(true)
         if(formType){
-            dispatch(registerUser(values))
-        }else{
-            //signIn
+            // register
+            dispatch(registerUser(values));
+        } else {
+            // sign in
         }
     }
 
     useEffect(()=>{
-      //  showToast('error','sorry','error msg')
-      if(error){
-          showToast('error', 'Sorry', error)
-      }
-    },[error,error])
+        if(error){
+            showToast('error','Sorry',error);
+            setLoading(false)
+        }
+    },[error])
+
+    useFocusEffect(
+        useCallback(()=>{
+            return () => dispatch(clearAuthError())
+        },[])
+    )
 
 
     return(
-
         <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.container}>
                 <LogoText/>
                 <Formik
-                    initialValues={{ email:'',password:''}}
+                    initialValues={{ email:'abc123@gmail.com',password:'123456'}}
                     validationSchema={Yup.object({
                         email: Yup.string()
                         .email('Invalid email address')
@@ -97,7 +103,6 @@ const AuthScreen = () => {
                             titleStyle={{ width:'100%'}}
                             onPress={handleSubmit}
                             loading={loading}
-                           // loading={}
                         />
                          <Button
                             type="clear"
