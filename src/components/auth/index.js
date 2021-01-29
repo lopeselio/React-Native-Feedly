@@ -3,24 +3,38 @@ import { View, StyleSheet, ScrollView } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
+import { registerUser } from '../../store/actions'
 
 import { Input, Button } from 'react-native-elements';
 import {LogoText, Colors, showToast } from '../../utils/tools';
 
 const AuthScreen = () => {
+    const dispatch = useDispatch()
+    const error = useSelector(state => state.auth.error)
     const [formType, setFormType] = useState(true)
     const [ securEntry,setSecurEntry] = useState(true);
+    const [loading, setLoading] = useState(false)
 
     const handleSubmit = (values) => {
-        alert(values)
+        // alert(values)
+        setLoading(true)
+        if(formType){
+            dispatch(registerUser(values))
+        }else{
+            //signIn
+        }
     }
 
     useEffect(()=>{
       //  showToast('error','sorry','error msg')
-    },[])
+      if(error){
+          showToast('error', 'Sorry', error)
+      }
+    },[error,error])
 
 
     return(
+
         <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.container}>
                 <LogoText/>
@@ -31,7 +45,7 @@ const AuthScreen = () => {
                         .email('Invalid email address')
                         .required('The email is required'),
                         password:Yup.string()
-                        .max(10,'Must be 10 or less')
+                        .max(20,'Must be 10 or less')
                         .required('The lastname is required')
                     })}
                     onSubmit={ values => handleSubmit(values)}
@@ -82,6 +96,7 @@ const AuthScreen = () => {
                             }}
                             titleStyle={{ width:'100%'}}
                             onPress={handleSubmit}
+                            loading={loading}
                            // loading={}
                         />
                          <Button
