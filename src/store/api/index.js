@@ -1,5 +1,5 @@
 import { firebase, usersCollection } from '../../firebase';
-// import AsyncStorage from '@react-native-community/async-storage';
+
 
 export const registerUser = async({ email,password }) =>{
     try{
@@ -41,8 +41,12 @@ export const autoSignIn = () => (
                     resolve({ isAuth: true, user: snapshot.data() })
                 })
             } else {
-                return { isAuth: false, user:[] }
+                resolve({ isAuth: false, user:[] })
             }
         })
     })
+)
+
+export const logoutUser = () => (
+    firebase.auth().signOut()
 )
