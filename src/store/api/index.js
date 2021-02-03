@@ -1,5 +1,5 @@
 import { firebase, usersCollection } from '../../firebase';
-
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const registerUser = async({ email,password }) =>{
     try{

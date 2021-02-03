@@ -20,7 +20,7 @@ export const LogoText = (props) => (
             ...props.style
         }}
     >
-        RedWire
+        Feedly!
     </Text>
 )
 
