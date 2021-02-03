@@ -46,7 +46,7 @@ const AuthScreen = () => {
             <View style={styles.container}>
                 <LogoText/>
                 <Formik
-                    initialValues={{ email:'',password:''}}
+                    initialValues={{ email:'abc@gmail.com',password:'password123'}}
                     validationSchema={Yup.object({
                         email: Yup.string()
                         .email('Invalid email address')
@@ -143,4 +143,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AuthScreen
+export default AuthScreen;

@@ -1,4 +1,3 @@
- 
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import ContentShow from '../../../../utils/contentShow';
@@ -10,7 +9,7 @@ const VideoScreen = () => {
             <View>
                 <Youtube
                     apiKey="AIzaSyCCn-f3qw2j65uvqb9bcxg2T-26XpDWq70"
-                    videoId="rmJmypWeGS4"
+                    videoId="Zfsg3oiPXGc"
                     play={false}
 
                     onReady={ e => console.log('ready')}
