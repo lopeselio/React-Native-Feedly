@@ -19,7 +19,8 @@ export const LogoText = (props) => (
             fontSize:50,
             ...props.style
         }}
-    >Feedly
+    >
+        RedWire
     </Text>
 )
 
