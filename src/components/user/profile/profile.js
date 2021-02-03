@@ -10,7 +10,7 @@ const ProfileScreen = () => {
         <ScrollView>
             <Appbar.Header>
                 <Appbar.BackAction onPress={()=> alert('back')}/>
-                <Appbar.Content title="Profile" subtitle="Feedly"/>
+                <Appbar.Content title="Profile" subtitle="Feedly!"/>
             </Appbar.Header>
             <View style={{padding:20}}>
                 <Title>Your user Login data</Title>
