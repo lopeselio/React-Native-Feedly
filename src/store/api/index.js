@@ -1,4 +1,5 @@
-import { firebase, usersCollection,articlesCollection } from '../../firebase';
+import { Alert } from 'react-native';
+import { firebase, usersCollection,articlesCollection,videosCollection } from '../../firebase';
 
 
 export const registerUser = async({ email,password }) =>{
@@ -74,7 +75,7 @@ export const getArticles = async() => {
         const response = await articlesCollection
         .where('public','==',1)
         .orderBy('createdAt')
-        .limit(4)
+        .limit(3)
         .get();
 
         const lastPostVisible = response.docs[response.docs.length-1];
