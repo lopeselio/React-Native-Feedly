@@ -1,4 +1,3 @@
- 
 import * as api from '../api';
 
 export const registerUser = (values) => ({
@@ -36,4 +35,15 @@ export const clearAuthError = () => ({
 export const getArticles = () => ({
     type:'GET_ARTICLES',
     payload: api.getArticles()
+})
+
+export const getMoreArticles = (articles) => ({
+    type:'GET_ARTICLES',
+    payload: api.getMoreArticles(articles)
+})
+
+
+export const getVideos = () => ({
+    type:'GET_VIDEOS',
+    payload: api.getVideos()
 })
